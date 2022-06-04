@@ -1,0 +1,82 @@
+@font-face {
+  font-family: 'cvbuilder-icons';
+  src:  url('../fonts/cvbuilder-icons/cvbuilder-icons.eot?46jeni');
+  src:  url('../fonts/cvbuilder-icons/cvbuilder-icons.eot?46jeni#iefix') format('embedded-opentype'),
+    url('../fonts/cvbuilder-icons/cvbuilder-icons.ttf?46jeni') format('truetype'),
+    url('../fonts/cvbuilder-icons/cvbuilder-icons.woff?46jeni') format('woff'),
+    url('../fonts/cvbuilder-icons/cvbuilder-icons.svg?46jeni#cvbuilder-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  display: flex;
+  font-family: 'cvbuilder-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-import:before {
+  content: "\e900";
+}
+.icon-save:before {
+  content: "\e901";
+}
+.icon-pdf:before {
+  content: "\e902";
+}
+.icon-print:before {
+  content: "\e903";
+}
+.icon-cursor:before {
+  content: "\e904";
+}
+.icon-cursor-alt:before {
+  content: "\e905";
+}
+.icon-grab:before {
+  content: "\e906";
+}
+.icon-grab-alt:before {
+  content: "\e907";
+}
+.icon-un-zoom:before {
+  content: "\e908";
+}
+.icon-zoom:before {
+  content: "\e909";
+}
+.icon-fit-width:before {
+  content: "\e90a";
+}
+.icon-fit-full:before {
+  content: "\e90b";
+}
+.icon-moon:before {
+  content: "\e90c";
+}
+.icon-sun:before {
+  content: "\e90d";
+}
+.icon-error:before {
+  content: "\e90f";
+}
+.icon-close:before {
+  content: "\e90e";
+}
+.icon-warning:before {
+  content: "\e910";
+}
+.icon-info:before {
+  content: "\e911";
+}
