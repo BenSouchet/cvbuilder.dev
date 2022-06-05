@@ -2,6 +2,9 @@
 
 _Welcome to the Source Code branch!_
 
+![source_code_banner](https://user-images.githubusercontent.com/17025808/172051639-1dca3c55-7a5a-44eb-87e3-c365621edb8d.jpg)
+
+
 The main README of the project is located [here](https://github.com/BenSouchet/cvbuilder.dev).
 
 ## Code Documentation
