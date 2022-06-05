@@ -7,9 +7,9 @@ Interesting in contributing to the CVBuilder.dev project, you are on the right p
 There are soft spots in the code, which could use cleanup, refactoring, additional comments, and so forth. Let's try to raise the bar, and clean things up as we go. Try to leave code in a better shape than it was before.
 
 ## How to Contribute
-If you are specifically looking on _**"How to add a new template to the template list?"**_ click [here]().
+If you are specifically looking on _**"How to add a new template to the template list?"**_ click [here](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md#how-to-add-a-new-template-to-the-template-list-).
 
-To test the web app locally on your branch check [this section]().
+To test the web app locally on your branch check [this section](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md#test-the-web-app-locally).
 
 #### To contribute to this project or any other projects hosted on platform like Github you need to create a **pull request**.
 
@@ -32,7 +32,7 @@ cd cvbuilder.dev/
 git switch -c {MY_BRANCH_NAME} gh-pages
 ```
 - `{MY_BRANCH_NAME}` need to be a string without space and used as a name that describe your contribution.
-5. Do the modification / addition you want in this branch, to test the web app locally read [this section]().
+5. Do the modification / addition you want in this branch, to test the web app locally read [this section](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md#test-the-web-app-locally).
 6. Then when the modifications suit you and you want to push them, you do:
 ```sh
 git add ./assets/js/modules/blocks.js
@@ -67,7 +67,7 @@ git switch -c {MY_BRANCH_NAME} gh-pages
 - /!\ Don't forgot to install [the requirements](https://jekyllrb.com/docs/installation/#requirements).
 
 ## How to add a new template to the template list ?
-To do that you will need to create a **pull request**, if you are not familiar with this process check [the detailed steps above]().
+To do that you will need to create a **pull request**, if you are not familiar with this process check [the detailed steps above](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md#first-time--how-to-create-a-pull-request-).
 
 Then regarding the edits you will need to make:
 1. Choose a name that fit well the template you want to add, in the steps below this name is refered as `{TEMPLATE_NAME}`.
