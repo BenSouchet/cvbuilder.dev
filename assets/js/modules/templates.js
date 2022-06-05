@@ -55,7 +55,7 @@ export class Controller {
                 filename: filename,
                 author: template.author,
                 url: this.baseUrl + 'files/' + filename + '.html',
-                thumbnail_url: this.baseUrl + "thumbnails/" + filename + ".jpg",
+                thumbnail_url: this.baseUrl + "previews/" + filename + ".jpg",
             }
 
             this._addTemplateToContainer(this.templates[filename]);
