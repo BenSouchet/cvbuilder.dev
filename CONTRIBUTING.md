@@ -58,13 +58,22 @@ git push
 ## Test the web app locally
 The web app use Jekyll to be compiled/served as a static site.
 
-1. Of course you first need to `fork` and `clone` the repository.
+0. Install the [Jekyll dependencies required](https://jekyllrb.com/docs/installation/#requirements).
+1. Of course you need to `fork` and `clone` the repository (if not done already).
 2. Like for "The steps to create a pull request", you need to create a new branch based on the `gh-pages` branch:
 ```sh
 git switch -c {MY_BRANCH_NAME} gh-pages
 ```
-4. And then check [the instructions provided by Jekyll](https://jekyllrb.com/docs/#instructions) to run locally the Jekyll instance.
-- /!\ Don't forgot to install [the requirements](https://jekyllrb.com/docs/installation/#requirements).
+4. Now run the following command (only required the first time to generate the `Gemfile.lock` file):
+```sh
+bundle install
+```
+5. And then to start the live server:
+```sh
+bundle exec jekyll serve --incremental --livereload
+```
+6. Now you can check the web app at : `http://127.0.0.1:4000`, if you do change normally this will trigger an regenerate of the app and reload your browser tab.
+- Sometime regenerate isn't triggered, like editing a JS module located at `./assets/js/modules/`, in that case in your terminal stop the live server with CTRL+C (Control+C on MacOS) and then re-run the command of step **5.** 
 
 ## How to add a new template to the template list ?
 To do that you will need to create a **pull request**, if you are not familiar with this process check [the detailed steps above](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md#first-time--how-to-create-a-pull-request-).
