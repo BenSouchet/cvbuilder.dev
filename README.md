@@ -59,3 +59,21 @@ This file store the controller that manage the templates logic, a `template` is 
 This file define the `Switcher` class used for switch the web app theme between **dark** and **light**.
 - By default the web app use the **light** colors, but if the class `.dark` is set to the `<html>` tag the **dark** colors are used.
 - When the user click to switch the new value is stored in is browser Local Storage, Local Storage can be clear when browsing cache is cleared.
+
+## Local Preview
+To test the web app locally the steps are:
+1. Install [Jekyll requirements](https://jekyllrb.com/docs/installation/).
+2. git clone the source code branch with:
+```sh
+git clone -b gh-pages --single-branch https://github.com/BenSouchet/cvbuilder.dev.git
+```
+3. Go in the newly created folder with `cd cvbuilder.dev/` and Install the project dependencies with:
+```sh
+bundle install
+```
+4. Then to start the live server do:
+```sh
+bundle exec jekyll serve --incremental --livereload
+```
+5. _Voilà_, now you can check the web app at : [`http://127.0.0.1:4000`](http://127.0.0.1:4000), if you do change normally this will trigger a re-generation of the app and reload your browser tab.
+- Sometime regenerate isn't triggered, like editing a JS module located at `./assets/js/modules/`, in that case in your terminal stop the live server with <kbd>CTRL</kbd>+<kbd>C</kbd> (<kbd>Control</kbd>+<kbd>C</kbd> on MacOS) and then re-run the command of step **4**.
