@@ -1,10 +1,13 @@
-import * as Theme from './modules/theme.js';
-import * as Resize from './modules/resize.js';
-import * as Preview from './modules/preview.js';
-import * as Blocks from './modules/blocks.js';
-import * as Actions from './modules/actions.js';
-import * as Popup from './modules/popup.js';
-import * as Templates from './modules/templates.js';
+---
+---
+
+{% include_relative modules/actions.js %}
+{% include_relative modules/blocks.js %}
+{% include_relative modules/popup.js %}
+{% include_relative modules/preview.js %}
+{% include_relative modules/resize.js %}
+{% include_relative modules/templates.js %}
+{% include_relative modules/theme.js %}
 
 class AppController {
     themeController;

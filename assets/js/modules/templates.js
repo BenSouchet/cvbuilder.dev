@@ -1,4 +1,5 @@
-export class Controller {
+const Templates = (function() { return { Controller:
+class TemplatesController {
     baseUrl = 'assets/templates/';
     templates = {};
     _containerElem;
@@ -78,4 +79,4 @@ export class Controller {
 
         this._containerElem.appendChild(templateLink);
     }
-}
+}}})();

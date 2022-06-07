@@ -1,15 +1,16 @@
-const pixelToFloat = (valueStr) => parseFloat(valueStr.slice(0, -2));
+const Preview = (function() {
+    const pixelToFloat = (valueStr) => parseFloat(valueStr.slice(0, -2));
 
-export class MouseState {
+    return { MouseState:
+class MouseState {
     static Select = new MouseState("Select");
     static Move = new MouseState("Move");
   
     constructor(name) {
         this.name = name;
     }
-}
-
-export class Mode {
+}, Mode:
+class Mode {
     static Free = new Mode("Free");
     static FitWidth = new Mode("FitWidth");
     static FitFull = new Mode("FitFull");
@@ -17,8 +18,7 @@ export class Mode {
     constructor(name) {
         this.name = name;
     }
-}
-
+}, UserMovingDevice:
 class UserMovingDevice {
     static Mouse = new UserMovingDevice("Mouse");
     static Trackpad = new UserMovingDevice("Trackpad");
@@ -27,8 +27,7 @@ class UserMovingDevice {
     constructor(name) {
         this.name = name;
     }
-}
-
+}, ZoomController:
 class ZoomController {
     _element;
     _elementUserInput;
@@ -117,8 +116,7 @@ class ZoomController {
             this._elementUserInput.blur();
         }
     }
-}
-
+}, MoveController:
 class MoveController {
     _element;
     _elementMouseArea;
@@ -236,14 +234,13 @@ class MoveController {
 
         this._element.style.left = 'unset';
     }
-}
-
+}, wheelController:
 class wheelController {
     _element;
     _elementContainer;
     _callbackZoom;
     _callbackPan;
-    _userDevice = UserMovingDevice.Undefined;
+    _userDevice = Preview.UserMovingDevice.Undefined;
     _lastUserDeviceDetection;
     _lastWheelEvent;
     pinchEnabled = false;
@@ -263,7 +260,7 @@ class wheelController {
     }
 
     _getUserMovingDevice(event, currDate) {   
-        if (this._userDevice != UserMovingDevice.Undefined &&
+        if (this._userDevice != Preview.UserMovingDevice.Undefined &&
             (this._lastWheelEvent + 200) >= currDate &&
             (this._lastUserDeviceDetection + 2000) >= currDate) {
             // If the device was previously detected,
@@ -277,7 +274,7 @@ class wheelController {
 
         // The first wheel event deltaY value of a Trackpad is something very small between 1 and 6
         // The first wheel event deltaY value of a mouse is at least 8 (and that on very high sensitive mouse wheel)
-        return Math.abs(event.deltaY) < 8 ? UserMovingDevice.Trackpad : UserMovingDevice.Mouse;
+        return Math.abs(event.deltaY) < 8 ? Preview.UserMovingDevice.Trackpad : Preview.UserMovingDevice.Mouse;
     }
 
     setUserMovingDevice(userdDevice) {
@@ -292,7 +289,7 @@ class wheelController {
 
         if (e.ctrlKey) {
             // It's a pinch
-            this.setUserMovingDevice(UserMovingDevice.Trackpad);
+            this.setUserMovingDevice(Preview.UserMovingDevice.Trackpad);
 
             if (!this.pinchEnabled) {
                 return false;
@@ -303,12 +300,12 @@ class wheelController {
             this._callbackZoom(e.deltaY);
         } else if (Math.abs(e.deltaX) > Number.EPSILON) {
             // It's a pan
-            this.setUserMovingDevice(UserMovingDevice.Trackpad);
+            this.setUserMovingDevice(Preview.UserMovingDevice.Trackpad);
 
             this._callbackPan(e.deltaX, e.deltaY);
         } else if (Math.abs(e.deltaY) > Number.EPSILON) {
             this._userDevice = this._getUserMovingDevice(e, currDate);
-            if (this._userDevice === UserMovingDevice.Mouse) {
+            if (this._userDevice === Preview.UserMovingDevice.Mouse) {
                 // It's a zoom
                 this._callbackZoom(e.deltaY);
             } else {
@@ -320,17 +317,16 @@ class wheelController {
         this._lastWheelEvent = currDate;
         return false;
     }
-}
-
-export class Controller {
+}, Controller:
+class PreviewController {
     _element;
     _elementContainer;
     _moveController;
     _zoomController;
     _wheelController;
     _freeZoom = false;
-    _mode = Mode.FitFull;
-    _mouseState = MouseState.Select;
+    _mode = Preview.Mode.FitFull;
+    _mouseState = Preview.MouseState.Select;
     _emInPixels = 16;
 
     constructor(containerElemId, mouseStates) {
@@ -343,9 +339,9 @@ export class Controller {
         this._elementContainer.append(this._element);
 
         // Create controllers for the features (move, zoom)
-        this._moveController = new MoveController(this._element, this._elementContainer, this._handleMoveStarted.bind(this), this._handleMoving.bind(this));
-        this._zoomController = new ZoomController(this._element, 0.05, 0.15, this._handleZoomUpdated.bind(this));
-        this._wheelController = new wheelController(this._element, this._elementContainer, this._handleZoom.bind(this), this._handlePan.bind(this));
+        this._moveController = new Preview.MoveController(this._element, this._elementContainer, this._handleMoveStarted.bind(this), this._handleMoving.bind(this));
+        this._zoomController = new Preview.ZoomController(this._element, 0.05, 0.15, this._handleZoomUpdated.bind(this));
+        this._wheelController = new Preview.wheelController(this._element, this._elementContainer, this._handleZoom.bind(this), this._handlePan.bind(this));
 
         // Listeners for Mouse tools
         for (const [mouseState, buttonId] of mouseStates) {
@@ -360,12 +356,12 @@ export class Controller {
         fitFullButton.onmousedown = this.toolFitFull.bind(this);
 
         this.toolFitFull();
-        this.switchMouseState(MouseState.Select);
+        this.switchMouseState(Preview.MouseState.Select);
     }
 
     switchMouseState(mouseState) {
         this._mouseState = mouseState;
-        if (this._mouseState === MouseState.Select) {
+        if (this._mouseState === Preview.MouseState.Select) {
             this._wheelController.pinchEnabled = false;
             this._element.classList.remove('nointeract');
         } else {
@@ -383,9 +379,9 @@ export class Controller {
     }
 
     viewResized() {
-        if (this._mode === Mode.FitWidth) {
+        if (this._mode === Preview.Mode.FitWidth) {
             this.toolFitWidth();
-        } else if (this._mode === Mode.FitFull) {
+        } else if (this._mode === Preview.Mode.FitFull) {
             this.toolFitFull();
         }
     }
@@ -413,11 +409,11 @@ export class Controller {
         const leftOffset = (this._elementContainer.offsetWidth - this._element.offsetWidth) * 0.5;
 
         this._moveController.setOffsetLeft(leftOffset);
-        if (this._mode === Mode.FitFull) {
+        if (this._mode === Preview.Mode.FitFull) {
             this._moveController.setOffsetTop(topOffset);
         }
 
-        this._mode = Mode.Free;
+        this._mode = Preview.Mode.Free;
         this._freeZoom = false;
     }
 
@@ -433,11 +429,11 @@ export class Controller {
     }
 
     toolFitWidth(event) {
-        if (this._mode !== Mode.FitWidth) {
+        if (this._mode !== Preview.Mode.FitWidth) {
             this._freeZoom = false;
         }
 
-        this._mode = Mode.FitWidth;
+        this._mode = Preview.Mode.FitWidth;
 
         const newZoomValue = this.getFitWidthZoom();
 
@@ -462,11 +458,11 @@ export class Controller {
     }
 
     toolFitFull(event) {
-        if (this._mode !== Mode.FitFull) {
+        if (this._mode !== Preview.Mode.FitFull) {
             this._freeZoom = false;
         }
 
-        this._mode = Mode.FitFull;
+        this._mode = Preview.Mode.FitFull;
 
         let newZoomValue = this.getFitFullZoom();
 
@@ -486,7 +482,7 @@ export class Controller {
         this._freeZoom = userZoom;
 
         // Update element position
-        if (this._mode === Mode.FitWidth) {
+        if (this._mode === Preview.Mode.FitWidth) {
             const topOffset = this._toolFitWidth_ComputeTopOffset();
 
             this._moveController.setOffsetTop(topOffset);
@@ -496,7 +492,7 @@ export class Controller {
                 // This will also disable/reset _freeZoom
                 this.switchToFreeMode();
             }
-        } else if (this._mode === Mode.FitFull) {
+        } else if (this._mode === Preview.Mode.FitFull) {
             this._moveController.unsetOffset();
             if (this._freeZoom && newValue > this.getFitFullZoom()) {
                 // User as manually zoom up while he was in Fit Full mode, we switch to Free Mode
@@ -507,7 +503,7 @@ export class Controller {
     }
 
     _handleMoveStarted() {
-        if (this._mouseState === MouseState.Move) {
+        if (this._mouseState === Preview.MouseState.Move) {
             this.switchToFreeMode();
             return true;
         }
@@ -535,5 +531,4 @@ export class Controller {
             this._moveController.setOffsetLeft(currOffset[1] - panDeltaX);
         }
     }
-
-}
+}}})();

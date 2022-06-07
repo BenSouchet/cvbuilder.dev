@@ -1,7 +1,8 @@
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-const pixelToFloat = (valueStr) => parseFloat(valueStr.slice(0, -2));
-
-export class Axis {
+const Resize = (function() { 
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+    const pixelToFloat = (valueStr) => parseFloat(valueStr.slice(0, -2));
+    return { Axis:
+class Axis {
     static X = new Axis("X");
     static Y = new Axis("Y");
     static Both = new Axis("Both");
@@ -9,9 +10,8 @@ export class Axis {
     constructor(name) {
         this.name = name;
     }
-}
-
-export class Resizer {
+}, Resizer:
+class Resizer {
     resizerElem;
     destElem;
     object;
@@ -37,11 +37,11 @@ export class Resizer {
 
         if (defaultValues[0] != null) {
             this.destElem.style.width = defaultValues[0] + 'px';
-            this.callback(Axis.X, defaultValues[0]);
+            this.callback(Resize.Axis.X, defaultValues[0]);
         }
         if (defaultValues[1] != null) {
             this.destElem.style.height = defaultValues[1] + 'px';
-            this.callback(Axis.Y, defaultValues[1]);
+            this.callback(Resize.Axis.Y, defaultValues[1]);
         }
 
         this.resizerElem.onmousedown = this.startResize.bind(this);
@@ -104,7 +104,7 @@ export class Resizer {
     resize(event) {
         const e = event || window.event;
 
-        if (this.axis == Axis.X || this.axis == Axis.Both) {
+        if (this.axis == Resize.Axis.X || this.axis == Resize.Axis.Both) {
             let newWidth = this.startSize[0] - (e.clientX - this.startPos[0]);
             const minMaxX = this.getCurrentMinMax(this.minMaxX);
 
@@ -113,10 +113,10 @@ export class Resizer {
             this.destElem.style.width = newWidth + 'px';
 
             if (this.callback !== undefined) {
-                this.callback(Axis.X, newWidth);
+                this.callback(Resize.Axis.X, newWidth);
             }
         }
-        if (this.axis == Axis.Y || this.axis == Axis.Both) {
+        if (this.axis == Resize.Axis.Y || this.axis == Resize.Axis.Both) {
             let newHeight = this.startSize[1] - (e.clientY - this.startPos[1]);
             const minMaxY = this.getCurrentMinMax(this.minMaxY);
             newHeight = clamp(newHeight, minMaxY[0], minMaxY[1]);
@@ -124,7 +124,7 @@ export class Resizer {
             this.destElem.style.height = newHeight + 'px';
 
             if (this.callback !== undefined) {
-                this.callback(Axis.Y, newHeight);
+                this.callback(Resize.Axis.Y, newHeight);
             }
         }
 
@@ -139,4 +139,4 @@ export class Resizer {
 
         return false;
     }
-}
+}}})();

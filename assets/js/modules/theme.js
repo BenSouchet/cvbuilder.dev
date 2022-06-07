@@ -1,4 +1,5 @@
-export class Switcher {
+const Theme = (function() { return { Switcher:
+class ThemeSwitcher {
     checkboxElem;
 
     constructor(elementID, callbackThemeChanged) {
@@ -37,4 +38,4 @@ export class Switcher {
         localStorage.setItem('theme', event.srcElement.checked ? 'dark' : 'light');
         this.switchToDark(event.srcElement.checked);
     }
-}
+}}})();

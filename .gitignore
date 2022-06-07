@@ -16,4 +16,19 @@ Thumbs.db
 *.sublime-workspace
 .idea
 .vscode
-*.pyc
+
+# Node
+node_modules
+npm-debug.log*
+package-lock.json
+
+# Ruby
+*.gem
+.bundle
+Gemfile.lock
+
+# Jekyll
+_site
+.jekyll-cache
+.jekyll-metadata
+.sass-cache

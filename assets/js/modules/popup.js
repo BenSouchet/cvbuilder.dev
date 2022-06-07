@@ -1,4 +1,5 @@
-export class Controller {
+const Popup = (function() { return { Controller:
+class PopupController {
     _containerElem;
     _titleElem;
     _contentElem;
@@ -95,4 +96,4 @@ export class Controller {
 
         this.close();
     }
-}
+}}})();

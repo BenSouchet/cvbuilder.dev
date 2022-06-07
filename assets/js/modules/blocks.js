@@ -1,4 +1,5 @@
-export class BlockName {
+const Blocks = (function() { return { BlockName:
+class BlockName {
     static Body = new BlockName("Body");
     static Head = new BlockName("Head");
     static Style = new BlockName("Style");
@@ -6,9 +7,8 @@ export class BlockName {
     constructor(name) {
         this.name = name;
     }
-}
-
-export class BlockErrors {
+}, BlockErrors:
+class BlockErrors {
     list = [];
     wrapperElem;
     contentElem;
@@ -20,9 +20,8 @@ export class BlockErrors {
         const retractCheckboxElem = document.getElementById(retractCheckboxElemId);
         retractCheckboxElem.addEventListener('change', callbackretractBlock);
     }
-}
-
-export class ErrorsController {
+}, ErrorsController:
+class ErrorsController {
     head;
     body;
     css;
@@ -38,9 +37,9 @@ export class ErrorsController {
         this.length = 0;
         this.domParser = new DOMParser();
 
-        this.head = new BlockErrors('wrapper-head-errors', 'head-errors-content', 'retract-head-errors', callbackResizeBlocks);
-        this.body = new BlockErrors('wrapper-body-errors', 'body-errors-content', 'retract-body-errors', callbackResizeBlocks);
-        this.css = new BlockErrors('wrapper-css-errors', 'css-errors-content', 'retract-css-errors', callbackResizeBlocks);
+        this.head = new Blocks.BlockErrors('wrapper-head-errors', 'head-errors-content', 'retract-head-errors', callbackResizeBlocks);
+        this.body = new Blocks.BlockErrors('wrapper-body-errors', 'body-errors-content', 'retract-body-errors', callbackResizeBlocks);
+        this.css = new Blocks.BlockErrors('wrapper-css-errors', 'css-errors-content', 'retract-css-errors', callbackResizeBlocks);
 
         this._titleElem = document.getElementById('block-errors-title');
         this._iconNumElem = document.getElementById('error-count');
@@ -145,13 +144,13 @@ export class ErrorsController {
         let block = undefined;
 
         switch (blockName) {
-            case BlockName.Head:
+            case Blocks.BlockName.Head:
                 block = this.head;
                 break;
-            case BlockName.Body:
+            case Blocks.BlockName.Body:
                 block = this.body;
                 break;
-            case BlockName.Style:
+            case Blocks.BlockName.Style:
                 block = this.css;
                 break;
             default:
@@ -172,9 +171,8 @@ export class ErrorsController {
         this._updateInterface(block);
     }
 
-}
-
-export class Controller {
+}, Controller:
+class BlocksController {
     bodyEditor;
     headEditor;
     cssEditor;
@@ -189,7 +187,7 @@ export class Controller {
         this.headEditor = ace.edit(headBlockId);
         this.cssEditor = ace.edit(cssBlockId);
 
-        this.errors = new ErrorsController(this.viewResized.bind(this));
+        this.errors = new Blocks.ErrorsController(this.viewResized.bind(this));
 
         this._callbackChangeOccured = callbackChangeOccured;
 
@@ -201,18 +199,18 @@ export class Controller {
     _initialize(isDark) {
         let HtmlMode = require("ace/mode/html").Mode;
 
-        this._setDefaultConfig(this.bodyEditor, new HtmlMode({fragmentContext: "body"}), BlockName.Body, isDark);
-        this._setDefaultConfig(this.headEditor, new HtmlMode({fragmentContext: "head"}), BlockName.Head, isDark);
-        this._setDefaultConfig(this.cssEditor, "ace/mode/css", BlockName.Style, isDark);
+        this._setDefaultConfig(this.bodyEditor, new HtmlMode({fragmentContext: "body"}), Blocks.BlockName.Body, isDark);
+        this._setDefaultConfig(this.headEditor, new HtmlMode({fragmentContext: "head"}), Blocks.BlockName.Head, isDark);
+        this._setDefaultConfig(this.cssEditor, "ace/mode/css", Blocks.BlockName.Style, isDark);
 
         this.cssEditor.session.on("changeAnnotation", this._eventUpdateCssErrors.bind(this));
-        this.updateBlockErrors(BlockName.Head);
-        this.updateBlockErrors(BlockName.Body);
+        this.updateBlockErrors(Blocks.BlockName.Head);
+        this.updateBlockErrors(Blocks.BlockName.Body);
     }
 
     _eventChangeOccured(event, blockName) {
         this._callbackChangeOccured();
-        if (blockName !== BlockName.Style) {
+        if (blockName !== Blocks.BlockName.Style) {
             this.updateBlockErrors(blockName);
         }
     }
@@ -225,7 +223,7 @@ export class Controller {
 
     _eventUpdateCssErrors(event) {
         const errorsList = this._retrieveListErrorsCSS(this.cssEditor.getSession().getAnnotations());
-        this.errors.setBlockErrors(BlockName.Style, errorsList);
+        this.errors.setBlockErrors(Blocks.BlockName.Style, errorsList);
     }
 
     switchToDark(darkBoolean) {
@@ -334,9 +332,9 @@ export class Controller {
     updateBlockErrors(blockName) {
         let strContent = '';
 
-        if (blockName === BlockName.Head) {
+        if (blockName === Blocks.BlockName.Head) {
             strContent = '<!DOCTYPE html><html><head>\n' + this.headEditor.getValue().trimEnd() + '\n</head><body></body></html>';
-        } else if (blockName === BlockName.Body) {
+        } else if (blockName === Blocks.BlockName.Body) {
             strContent = '<!DOCTYPE html><html><head></head><body>\n' + this.bodyEditor.getValue().trimEnd() + '\n</body></html>'; 
         } else {
             return false;
@@ -366,4 +364,4 @@ ${bodyContent}
 </body>
 </html>`;
     }
-}
+}}})();

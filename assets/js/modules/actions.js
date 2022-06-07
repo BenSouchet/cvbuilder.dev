@@ -1,4 +1,5 @@
-export class Controller {
+const Actions = (function() { return { Controller:
+class ActionsController {
     _callbackGetStringHTML;
     _callbackGetIframeElem;
     _callbackActionSaveHTML;
@@ -128,4 +129,4 @@ export class Controller {
         const iframeWindow = this._callbackGetIframeElem().contentWindow;
         iframeWindow.print();
     }
-}
+}}})();

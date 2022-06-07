@@ -1,0 +1,42 @@
+title: CVBuilder.dev
+tagline: Write your CV in HTML/CSS
+description: Write your CV / Resume Easily with HTML & CSS!
+url: https://cvbuilder.dev
+
+theme: null
+
+license:
+  name: MIT
+  url: https://github.com/BenSouchet/cvbuilder.dev/blob/main/LICENSE
+
+maintainers:
+  - name: Ben Souchet
+    url: https://github.com/BenSouchet
+
+encoding: "utf-8"
+
+kramdown:
+  input: Kramdown
+
+exclude: ["node_modules/", "package.json", "package-lock.json", "*.gemspec", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "assets/js/modules/", "assets/css/style.scss"]
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  blanklines: true
+
+jekyll-uglify:
+  output:
+    comments: :none
+    bracketize: true
+  mangle:
+    toplevel: true
+    properties: true
+  compress:
+    toplevel: true
+    collapse_vars: true
+    reduce_funcs: true
+    reduce_vars: true
+    passes: 2
+  harmony: true
