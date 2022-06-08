@@ -115,7 +115,7 @@ class ErrorsController {
     _updateInterface(block) {
         this._updateIconNum();
         this._update_title();
-        
+
         const errorsStrHTML = this._errorsToStrHTML(block.list);
         block.contentElem.innerHTML = errorsStrHTML;
 
@@ -228,7 +228,7 @@ class BlocksController {
 
     switchToDark(darkBoolean) {
         const theme = (darkBoolean) ? "ace/theme/rowan_dark" : "ace/theme/rowan_light";
-        
+
         this.headEditor.setTheme(theme);
         this.bodyEditor.setTheme(theme);
         this.cssEditor.setTheme(theme);
@@ -241,7 +241,7 @@ class BlocksController {
         } else {
             editor.setTheme("ace/theme/rowan_light");
         }
-        
+
         // Enable the keyboard shortcuts or Visual Studio Code
         editor.setKeyboardHandler("ace/keyboard/vscode");
         // Like in VS Code the undo have a delta
@@ -335,7 +335,7 @@ class BlocksController {
         if (blockName === Blocks.BlockName.Head) {
             strContent = '<!DOCTYPE html><html><head>\n' + this.headEditor.getValue().trimEnd() + '\n</head><body></body></html>';
         } else if (blockName === Blocks.BlockName.Body) {
-            strContent = '<!DOCTYPE html><html><head></head><body>\n' + this.bodyEditor.getValue().trimEnd() + '\n</body></html>'; 
+            strContent = '<!DOCTYPE html><html><head></head><body>\n' + this.bodyEditor.getValue().trimEnd() + '\n</body></html>';
         } else {
             return false;
         }

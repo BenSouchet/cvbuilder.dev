@@ -19,6 +19,7 @@ class AppController {
     cssBlockResizer;
     sideResizer;
     _unsavedChanges = false;
+    _skipPreviewUpdate = undefined;
     _updatePreviewRequested = undefined;
     leftSideElem;
     rightSideElem;
@@ -41,12 +42,10 @@ class AppController {
 
         this.cssBlockResizer = new Resize.Resizer('sidebar-resizer-h', 'block-css', Resize.Axis.Y, null, ['22px', '100vh - 18.82rem'], 'dummy-container', [null, cssBlockHeight], null, this._callbackCssBlockResized.bind(this));
         this.sideResizer = new Resize.Resizer('sidebar-resizer-v', 'side-right', Resize.Axis.X, [ this.rightSideWidthMin.toString() + 'px', '100vw - 22.525rem'], null, 'dummy-container', [rightSideWidth, null], 'live-preview', this._callbackSideResized.bind(this));
-        
-        this.blocksController = new Blocks.Controller('block-body', 'block-head', 'content-block-css', this._callbackBlocksChanged.bind(this), this.themeController.isDark());
-        this._generateStringHTML();
+
+        this.blocksController = new Blocks.Controller('block-body', 'block-head', 'content-block-css', this._callbackBlockChanged.bind(this), this.themeController.isDark());
 
         this.previewController = new Preview.Controller('preview-container', [[Preview.MouseState.Select, 'tool-radio-cursor-pointer'], [Preview.MouseState.Move, 'tool-radio-cursor-grab']]);
-        this._updatePreview();
 
         this.actionsController = new Actions.Controller(this.getStringHTML.bind(this), this.getIframeElem.bind(this), this._callbackActionSaveHTML.bind(this), this._callbackEventBeforeImportHTML.bind(this), this._callbackUpdateBlocks.bind(this));
 
@@ -106,7 +105,7 @@ class AppController {
             e.returnValue = 'Unsaved modifications will be lost, are you sure ?';
             return 'Unsaved modifications will be lost, are you sure ?';
         }
-    
+
         delete e['returnValue'];
     }
 
@@ -115,6 +114,9 @@ class AppController {
     }
 
     _callbackUpdateBlocks(bodyHtmlStr, headHtmlStr, styleCssStr, resetSavedChanges=false) {
+        // Skip the next two preview update, only update when the CSS is set.
+        this._skipPreviewUpdate = 2;
+
         this.blocksController.headEditor.session.setValue(headHtmlStr.trim());
         this.blocksController.headEditor.navigateFileStart();
         this.blocksController.updateBlockErrors(Blocks.BlockName.Head);
@@ -166,6 +168,7 @@ class AppController {
     }
 
     _updatePreview() {
+        console.log('here');
         this.previewController.updateHTML(this.currentStringHTML);
         this._updatePreviewRequested = undefined;
     }
@@ -174,19 +177,30 @@ class AppController {
         localStorage.setItem('side-width', value);
     }
 
-    _callbackBlocksChanged() {
+    _callbackBlockChanged() {
+        if (this._skipPreviewUpdate !== undefined && this._skipPreviewUpdate > 0) {
+            // When the three blocks are updated at the same time, only update the preview once!
+            this._skipPreviewUpdate--;
+            return false;
+        }
+
         clearTimeout(this._updatePreviewRequested);
         this._unsavedChanges = true;
 
         this._generateStringHTML();
 
-        this._updatePreviewRequested = setTimeout(this._updatePreview.bind(this), 1400);
+        if (this._skipPreviewUpdate === undefined) {
+            this._updatePreviewRequested = setTimeout(this._updatePreview.bind(this), 1400);
+        } else {
+            this._skipPreviewUpdate = undefined;
+            this._updatePreview();
+        }
     }
-    
+
     _callbackSideResized(axis, value) {
         this.rightSideWidth = value;
         this._saveSideWidthLS(value);
-    
+
         if (this.previewController) {
             // Check required since the right side resizer instance is created before the preview controller instance
             this.previewController.viewResized();
@@ -195,7 +209,7 @@ class AppController {
             this.blocksController.viewResized();
         }
     }
-    
+
     _callbackCssBlockResized(axis, value) {
         localStorage.setItem('css-block-height', value);
 
@@ -212,7 +226,7 @@ function initialization() {
 function _preInitSwitchToDark() {
     // Get theme var from local storage
     const userSelectedTheme = localStorage.getItem('theme');
-  
+
     if ((userSelectedTheme === null && window.matchMedia &&
         window.matchMedia('(prefers-color-scheme: dark)').matches) ||
         userSelectedTheme === "dark") {

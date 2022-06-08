@@ -5,7 +5,7 @@ const Preview = (function() {
 class MouseState {
     static Select = new MouseState("Select");
     static Move = new MouseState("Move");
-  
+
     constructor(name) {
         this.name = name;
     }
@@ -14,7 +14,7 @@ class Mode {
     static Free = new Mode("Free");
     static FitWidth = new Mode("FitWidth");
     static FitFull = new Mode("FitFull");
-  
+
     constructor(name) {
         this.name = name;
     }
@@ -23,7 +23,7 @@ class UserMovingDevice {
     static Mouse = new UserMovingDevice("Mouse");
     static Trackpad = new UserMovingDevice("Trackpad");
     static Undefined = new UserMovingDevice("Undefined");
-  
+
     constructor(name) {
         this.name = name;
     }
@@ -259,7 +259,7 @@ class wheelController {
         this._element.contentWindow.addEventListener('wheel', this._eventWheel.bind(this, event, false), { passive: false });
     }
 
-    _getUserMovingDevice(event, currDate) {   
+    _getUserMovingDevice(event, currDate) {
         if (this._userDevice != Preview.UserMovingDevice.Undefined &&
             (this._lastWheelEvent + 200) >= currDate &&
             (this._lastUserDeviceDetection + 2000) >= currDate) {

@@ -37,7 +37,7 @@ class TemplatesController {
         const templates = Object.values(this.templates);
         const templateIndex = Math.floor(Math.random() * (templates.length));
 
-        this.applyTemplate(templates[templateIndex].filename); 
+        this.applyTemplate(templates[templateIndex].filename);
     }
 
     previewTemplate(templateFilename) {

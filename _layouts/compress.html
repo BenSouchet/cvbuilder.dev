@@ -1,0 +1,5 @@
+---
+---
+{% capture _content %}{{ content }}{% endcapture %}
+{% assign _content = _content | remove: "	" %}
+{{ _content | strip_newlines }}

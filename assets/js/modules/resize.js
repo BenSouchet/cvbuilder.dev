@@ -1,4 +1,4 @@
-const Resize = (function() { 
+const Resize = (function() {
     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
     const pixelToFloat = (valueStr) => parseFloat(valueStr.slice(0, -2));
     return { Axis:
@@ -6,7 +6,7 @@ class Axis {
     static X = new Axis("X");
     static Y = new Axis("Y");
     static Both = new Axis("Both");
-  
+
     constructor(name) {
         this.name = name;
     }
