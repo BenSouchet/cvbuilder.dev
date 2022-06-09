@@ -15,16 +15,23 @@ There is multiple templates available, ready to use and perfect for a good start
 ## 📌 Usage & Information
 **CVBuilder.dev** should be easy to use, on one side you see the current result, and on the other you have editor blocks to enter the HTML & CSS.
 
-In the topbar you have the **actions**:
-- _Open & Import HTML_, use to import a previously saved resume.
-- _Save As HTML_, save the resume in one `.html` file to be able to use it again.
-- _Export As PDF_, to generate a flat A4 PDF that you can easily share.
-- _Print_, open the print dialog box of your browser.
+### ▫️ In the topbar you have the **actions**
 
-The bottom bar contains the **preview tools**:
-- _Select Mode_, it's the default mode you can select the text of the preview.
-- _Move Mode_, in this mode you are in "hand" mode, this means that you can move the preview by clicking and dragging. If you have a trackpad you can pinch to zoom-in / zoom-out.
-- Then the zoom controls, there is no real need to explain what it does :)
+<img src="https://user-images.githubusercontent.com/17025808/172841015-23bc4683-90b3-423b-a9c6-23d8e7ac3dc5.png" align="right" title="Actions" height="140">
+
+- _**Open & Import HTML**_, use to import a previously saved resume.
+- _**Save As HTML**_, save the resume in one `.html` file to be able to use it again.
+- _**Export As PDF**_, to generate a flat A4 PDF that you can easily share.
+- _**Print**_, open the print dialog box of your browser.
+<br />
+
+### ▫️ The bottom bar contains the **preview tools**
+
+<img src="https://user-images.githubusercontent.com/17025808/172842122-7eff917f-d691-4e3c-bc53-4794b4a9c5a6.png" align="right" title="preview-tools" width="335">
+
+- _**Select Mode**_, it's the default mode you can select the text of the preview.
+- _**Move Mode**_, in this mode you are in "hand" mode, this means that you can move the preview by clicking and dragging. If you have a trackpad you can pinch to zoom-in / zoom-out.
+- Then the _**zoom controls**_, there is no real need to explain what it does :)
 - Finally two button similar as in Adobe Reader / Acrobat, the first one will fit the preview in the available width.
 - And the other one to fit the preview in the available space.
 
