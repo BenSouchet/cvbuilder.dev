@@ -37,6 +37,11 @@ There is multiple templates available, ready to use and perfect for a good start
 
 Check below a detailed view of the interface:
 
+## 🖨 Print Issues ?
+You experienced print issues? The background and/or part of the style (CSS) is not displayed?
+
+This is due to some settings you need to change in the print preview window, for more information [check this page](https://github.com/BenSouchet/cvbuilder.dev/blob/main/PRINT.md).
+
 ## 🗄 Source Code
 The whole source code is on the [`gh-pages` branch](https://github.com/BenSouchet/cvbuilder.dev/tree/gh-pages) of this repository.
 
