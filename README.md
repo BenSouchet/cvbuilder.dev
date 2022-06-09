@@ -1,4 +1,4 @@
-# CVBuilder.dev
+# CVBuilder.dev <img src="https://raw.githubusercontent.com/BenSouchet/CVBuilder.dev/main/src/assets/logo-220x220.png" align="right" title="Maestral" width="110" height="110">
 _Write your CV/Resume Easily with HTML & CSS!_
 
 <p align="center">
