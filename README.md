@@ -1,6 +1,7 @@
-# CVBuilder.dev <img src="https://raw.githubusercontent.com/BenSouchet/CVBuilder.dev/main/src/assets/logo-220x220.png" align="right" title="Maestral" width="110" height="110">
+# CVBuilder.dev <img src="https://raw.githubusercontent.com/BenSouchet/cvbuilder.dev/main/assets/logo-220x220.png" align="left" title="CVBuilder.dev" width="110" height="110">
 _Write your CV/Resume Easily with HTML & CSS!_
-
+<br />
+<br />
 <p align="center">
   <img src="https://visitor-badge.glitch.me/badge?page_id=BenSouchet.cvbuilder&left_text=Views" alt="Views Count" />
   <img src="https://www.repostatus.org/badges/latest/active.svg" alt="The project is being actively developed." />
