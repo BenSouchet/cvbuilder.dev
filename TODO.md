@@ -1,7 +1,7 @@
 # TO DO
 The list below corresponds to the tasks that are planned to be implemented
 
-- [ ] Favicon for all platforms (default favicon.ico, Apple, Android, Microsoft, ...)
+- [x] Favicon for all platforms (default favicon.ico, Apple, Android, Microsoft, ...)
 - [ ] Randomize order of templates in templates section on web app loading
 - [ ] Create the templates (replace the current placeholders)
 - [ ] Add sounds when switching web app theme (dark to light, light to dark)
