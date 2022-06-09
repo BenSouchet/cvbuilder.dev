@@ -168,7 +168,6 @@ class AppController {
     }
 
     _updatePreview() {
-        console.log('here');
         this.previewController.updateHTML(this.currentStringHTML);
         this._updatePreviewRequested = undefined;
     }
