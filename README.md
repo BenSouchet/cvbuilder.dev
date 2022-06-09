@@ -9,10 +9,10 @@ _Write your CV/Resume Easily with HTML & CSS!_
 
 **CVBuilder.dev** is a Web App that helps you you create your CV in HTML & CSS, it's written in pure JS and hosted by Github.
 
-## Templates
+## 🗃 Templates
 There is multiple templates available, ready to use and perfect for a good start!
 
-## Usage & Information
+## 📌 Usage & Information
 **CVBuilder.dev** should be easy to use, on one side you see the current result, and on the other you have editor blocks to enter the HTML & CSS.
 
 In the topbar you have the **actions**:
@@ -30,17 +30,17 @@ The bottom bar contains the **preview tools**:
 
 Check below a detailed view of the interface:
 
-## Source Code
+## 🗄 Source Code
 The whole source code is on the [`gh-pages` branch](https://github.com/BenSouchet/cvbuilder.dev/tree/gh-pages) of this repository.
 
-## How it's working internally ?
+## ⏯ How it's working internally ?
 The preview is a ***virtual sandboxed iFrame***, **virtual** because the iFrame doesn't point to a true file/page, and **sandboxed** to avoid code injection into the web app.
 
 The editor blocks are currently instances of [Ace editor](https://github.com/ajaxorg/ace). The project will maybe move to [Code Mirror](https://github.com/codemirror/codemirror.next/) in the futur to improve CSS coverage.
 
 The HTML to PDF is done by the combo of two libraries, first [html2canvas](https://github.com/niklasvh/html2canvas) to create an image (PNG) of the Preview in the form of an HTML canvas, then set this image into a PDF with [img2pdf](https://github.com/BenSouchet/img2pdf).
 
-## Limitations
+## 🛑 Limitations
 #### • Only One Page ?
 Currently you can only work on one page at a time, if you have a multi pages resume to build:
 1. Start by creating the first page, then save the HTML with the _Save As HTML_ button and _Export as PDF_
@@ -63,7 +63,7 @@ Exactly the same answer as for the **Sass / SCSS** 🙂
 #### • Why no User Login / session ?
 Since the project is hosted on Github (via Github Pages), and use Jekyll, there is no server operations it's all client side JS code. This makes it impossible to have a User Session with login, saved files, back-ups. The maximum we can set is Local Storage ("successor" of cookies) to store some variables.
 
-## Contributing
+## 📢 Contributing
 I actively encourage and support contributions.
 
 Feel free to fork and improve/enhance **CVBuilder.dev** any way you want. If you feel that the web app and/or the community will benefit from your changes, please open a pull request.
@@ -72,10 +72,10 @@ You just created a stunning Resume and want to share it as a **template** for th
 
 You don't know how to contribute ? How to open a pull request ? No worries, [check this page!](https://github.com/BenSouchet/cvbuilder.dev/blob/main/CONTRIBUTING.md)
 
-## Author / Maintainer
+## 🧑‍💻 Author / Maintainer
 **CVBuilder.dev** has been created and is currently maintained by [Ben Souchet](https://github.com/BenSouchet).
 
-## Licenses
+## 🖋 Licenses
 - Third party libraries used for this project (in [`/assets/js/vendor/`](https://github.com/BenSouchet/cvbuilder.dev/tree/gh-pages/assets/js/vendor)) have there own licenses accessible in their respective sub-folders.
 - The font used [`JetBrains Mono`](https://www.jetbrains.com/lp/mono/) is under the [SIL Open Font License 1.1](https://github.com/JetBrains/JetBrainsMono/blob/master/OFL.txt).
 - Apart from that, the rest of the elements (code, images, font) in this repository are under [MIT license](https://github.com/BenSouchet/cvbuilder.dev/blob/main/LICENSE).
